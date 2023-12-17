@@ -158,7 +158,8 @@ async function main() {
 		}
 
 		//弾を生成
-		if (GetKey("Space")) {
+		//1フレーム当たり10%の確率で弾を生成
+		if (Math.random() < 0.1) {
 			//pythonのappendと同じ
 			let x = Math.random() * 800
 			let y = Math.random() * 100

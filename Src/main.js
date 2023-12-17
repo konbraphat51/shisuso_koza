@@ -192,6 +192,13 @@ async function main() {
 			bullets[cnt].y += bulletSpeed
 		}
 
+		//画面外に出た弾を消す
+		for (let cnt = bullets.length - 1; cnt >= 0; cnt--) {
+			if (bullets[cnt].y > 600 + bulletsRadius) {
+				bullets.splice(cnt, 1)
+			}
+		}
+
 		//スコア描く
 		SetColor("black")
 		DrawText(Math.floor(score), 600, 80)
@@ -217,6 +224,8 @@ async function main() {
 				bullets[cnt].hitted = true
 
 				playerHitted = true
+
+				score = 0
 			} else {
 				//当たってないとき
 				bullets[cnt].hitted = false

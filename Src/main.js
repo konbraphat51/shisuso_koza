@@ -151,6 +151,7 @@ async function main() {
 	let bullets = []
 	let bulletSpeed = 2
 	let bulletsRadius = 10
+	let score = 0
 	for (let cnt = 0; ; cnt++) {
 		//消去
 		SetColor("white")
@@ -190,6 +191,13 @@ async function main() {
 		for (let cnt = 0; cnt < bullets.length; cnt++) {
 			bullets[cnt].y += bulletSpeed
 		}
+
+		//スコア描く
+		SetColor("black")
+		DrawText(Math.floor(score), 600, 80)
+
+		//スコア加算
+		score += 0.1
 
 		//当たり判定
 		playerHitted = false //いったんfalseにしておく、一度でも当たったらtrueになるが、一度も当たらなかったらfalseのまま

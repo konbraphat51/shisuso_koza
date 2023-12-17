@@ -131,31 +131,50 @@ async function main() {
 	// 	await Sleep(1) //休憩時間、冷却時間
 	// }
 
+	function IsColliding(x1, y1, r1, x2, y2, r2) {
+		return ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5 < r1 + r2
+	}
+
 	class Bullet {
 		constructor(x, y) {
 			this.x = x
 			this.y = y
+			this.hitted = false
 		}
 	}
 
 	let x = 300
 	let y = 300
 	let speed = 3 //変数化しておこう
+	let playerRadius = 30
+	let playerHitted = false
 	let bullets = []
 	let bulletSpeed = 2
+	let bulletsRadius = 10
 	for (let cnt = 0; ; cnt++) {
 		//消去
 		SetColor("white")
 		DrawRect(0, 0, 800, 600)
 
 		//プレイヤー
-		SetColor("black")
-		DrawText("a", x, y)
+		if (playerHitted) {
+			SetColor("red")
+		} else {
+			SetColor("black")
+		}
+
+		DrawCircle(x, y, playerRadius)
 
 		//弾を描く
-		SetColor("red")
 		for (let cnt = 0; cnt < bullets.length; cnt++) {
-			DrawCircle(bullets[cnt].x, bullets[cnt].y, 10)
+			if (bullets[cnt].hitted) {
+				//当たってる弾
+				SetColor("red")
+			} else {
+				//当たってない弾
+				SetColor("blue")
+			}
+			DrawCircle(bullets[cnt].x, bullets[cnt].y, bulletsRadius)
 		}
 
 		//弾を生成
@@ -170,6 +189,30 @@ async function main() {
 		//弾を動かす
 		for (let cnt = 0; cnt < bullets.length; cnt++) {
 			bullets[cnt].y += bulletSpeed
+		}
+
+		//当たり判定
+		playerHitted = false //いったんfalseにしておく、一度でも当たったらtrueになるが、一度も当たらなかったらfalseのまま
+		for (let cnt = 0; cnt < bullets.length; cnt++) {
+			if (
+				//関数化すればするほど褒められる
+				IsColliding(
+					x,
+					y,
+					playerRadius,
+					bullets[cnt].x,
+					bullets[cnt].y,
+					bulletsRadius,
+				)
+			) {
+				//弾が当たったことを記憶させる
+				bullets[cnt].hitted = true
+
+				playerHitted = true
+			} else {
+				//当たってないとき
+				bullets[cnt].hitted = false
+			}
 		}
 
 		//移動

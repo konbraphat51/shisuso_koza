@@ -163,7 +163,7 @@ async function main() {
 		if (Math.random() < 0.1) {
 			//pythonのappendと同じ
 			let x = Math.random() * 800
-			let y = Math.random() * 100
+			let y = Math.random() * 100 - 200
 			bullets.push(new Bullet(x, y))
 		}
 

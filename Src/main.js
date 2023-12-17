@@ -104,30 +104,73 @@ async function main() {
 	// }
 
 	//移動
-	let x = 300
-	let y = 300
-	let speed = 3 //変数化しておこう
-	for (let cnt = 0; ; cnt++) {
-		//消去
-		SetColor("white")
-		DrawRect(0, 0, 800, 600)
+	// let x = 300
+	// let y = 300
+	// let speed = 3 //変数化しておこう
+	// for (let cnt = 0; ; cnt++) {
+	// 	//消去
+	// 	SetColor("white")
+	// 	DrawRect(0, 0, 800, 600)
 
-		SetColor("black")
-		DrawText("a", x, y)
+	// 	SetColor("black")
+	// 	DrawText("a", x, y)
 
-		if (GetKey("ArrowRight")) {
-			x += speed
-		}
-		if (GetKey("ArrowLeft")) {
-			x -= speed
-		}
-		if (GetKey("ArrowUp")) {
-			y -= speed
-		}
-		if (GetKey("ArrowDown")) {
-			y += speed
-		}
+	// 	if (GetKey("ArrowRight")) {
+	// 		x += speed
+	// 	}
+	// 	if (GetKey("ArrowLeft")) {
+	// 		x -= speed
+	// 	}
+	// 	if (GetKey("ArrowUp")) {
+	// 		y -= speed
+	// 	}
+	// 	if (GetKey("ArrowDown")) {
+	// 		y += speed
+	// 	}
 
-		await Sleep(1) //休憩時間、冷却時間
+	// 	await Sleep(1) //休憩時間、冷却時間
+	// }
+
+	// class Bullet {
+	// 	constructor(x, y) {
+	// 		this.x = 0
+	// 		this.y = 0
+	// 	}
+	// }
+
+	// let x = 300
+	// let y = 300
+	// let speed = 3 //変数化しておこう
+	// for (let cnt = 0; ; cnt++) {
+	// 	//消去
+	// 	SetColor("white")
+	// 	DrawRect(0, 0, 800, 600)
+
+	// 	//プレイヤー
+	// 	SetColor("black")
+	// 	DrawText("a", x, y)
+
+	// 	//移動
+	// 	if (GetKey("ArrowRight")) {
+	// 		x += speed
+	// 	}
+	// 	if (GetKey("ArrowLeft")) {
+	// 		x -= speed
+	// 	}
+	// 	if (GetKey("ArrowUp")) {
+	// 		y -= speed
+	// 	}
+	// 	if (GetKey("ArrowDown")) {
+	// 		y += speed
+	// 	}
+
+	// 	await Sleep(1) //休憩時間、冷却時間
+	// }
+
+	//配列
+	let a = [1, 2, 3]
+	for (let cnt = 0; cnt < a.length /* aの要素数 */; cnt++) {
+		//for文とセットで使う
+		DrawText(a[cnt], 300, 300 + cnt * 100)
 	}
 }

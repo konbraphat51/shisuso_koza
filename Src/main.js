@@ -87,4 +87,19 @@ async function main() {
 	// 	//条件文あってる
 	// 	DrawText("1 == 1 || 1 == 2", 300, 100)
 	// }
+
+	//キー入力
+	//無限ループ
+	for (let cnt = 0; ; cnt++) {
+		//消去
+		SetColor("white")
+		DrawRect(0, 0, 800, 600)
+
+		SetColor("black")
+		if (GetKey("KeyA")) {
+			DrawText("Space", 300, 300)
+		}
+
+		await Sleep(1) //休憩時間、冷却時間
+	}
 }
